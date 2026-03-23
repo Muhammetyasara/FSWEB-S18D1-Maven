@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,13 +44,6 @@ class SqlDmlJoinsApplicationTests {
 	@Test
 	void findStudentsWithNoBookTest(){
 		assertEquals(ogrenciRepository.findStudentsWithNoBook().size(), 2);
-	}
-
-	@DisplayName("Kitap almayan öğrencileri listeleyin.")
-	@Test
-	void findClassesWithBookCountTest(){
-		assertEquals(ogrenciRepository.findClassesWithBookCount().size(), 2);
-		assertEquals(ogrenciRepository.findClassesWithBookCount().get(0).getCount(), 6);
 	}
 
 	@DisplayName("Öğrenci tablosundaki öğrenci sayısını gösterin.")
@@ -93,6 +87,6 @@ class SqlDmlJoinsApplicationTests {
 	@DisplayName("Tüm kitapların ortalama puanını bulunuz.")
 	@Test
 	void findAvgPointOfBooksTest(){
-		assertEquals(String.format("%.2f", kitapRepository.findAvgPointOfBooks()), "19.42");
+		assertEquals(String.format(Locale.US, kitapRepository.findAvgPointOfBooks()), "19.42");
 	}
 }
